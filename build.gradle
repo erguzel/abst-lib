@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven-publish'
 
 group = 'com.github.erguzel'
+version = "0.1-SNAPSHOT"
 
 sourceCompatibility = 1.8 // java 8
 targetCompatibility = 1.8
@@ -32,4 +33,19 @@ dependencies {
     // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.sicsrobotics'
+            artifactId = 'abst-lib'
+            version = "0.1-SNAPSHOT"
+            from components.java
+
+            pom {
+                description = 'Basic data abstraction and utils library'
+            }
+        }
+    }
 }
