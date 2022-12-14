@@ -2,8 +2,10 @@ package com.sicsrobotics.util.io;
 
 import com.sicsrobotics.util.exeption.SicsException;
 
+import java.io.File;
 import java.io.FileInputStream;
-
+import java.io.DataInputStream;
+import java.util.Base64;
 /**
  * Hosts io read write methods
  */
@@ -17,8 +19,17 @@ public class IOHelper {
         FileInputStream fr = null;
         String result = null;
         try {
+
+            
+            
+            
             fr = new FileInputStream(path);
-            result = new String(fr.readAllBytes());
+            byte[] bytes = new byte[(int) new File(path).length()];
+            DataInputStream dataInputStream = new DataInputStream(fr);
+           // result = new String(fr.readAllBytes());
+            dataInputStream .readFully(bytes);
+            result = Base64.getEncoder().encodeToString(bytes);
+            dataInputStream.close();
         }catch (Throwable e){
             SicsException
                     .Handle("Read flat file reading input stream failed",
