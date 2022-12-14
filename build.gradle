@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
 }
 
-group = 'com.sicsrobotics'
+group = 'com.github.erguzel'
 
 sourceCompatibility = 1.8 // java 8
 targetCompatibility = 1.8
